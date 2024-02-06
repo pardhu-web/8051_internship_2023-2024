@@ -1,0 +1,177 @@
+BL51 BANKED LINKER/LOCATER V6.00                                                        02/06/2024  15:52:42  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.00, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE main.obj TO main
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
+
+
+LINK MAP OF MODULE:  main (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         _DATA_GROUP_
+            IDATA   000CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     002DH     UNIT         ?C?LIB_CODE
+            CODE    082DH     002BH     UNIT         ?CO?MAIN
+            CODE    0858H     0024H     UNIT         ?PR?_SERIAL_PRINT?MAIN
+            CODE    087CH     0023H     UNIT         ?PR?MAIN?MAIN
+            CODE    089FH     0020H     UNIT         ?PR?_DELAY?MAIN
+            CODE    08BFH     000CH     UNIT         ?PR?SERIAL_BEGIN?MAIN
+            CODE    08CBH     000CH     UNIT         ?C_C51STARTUP
+            CODE    08D7H     0008H     UNIT         ?PR?_SERIAL_SEND?MAIN
+            CODE    08DFH     0008H     UNIT         ?PR?SERIAL_READ?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   main (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  0008H    0001H
+  +--> ?PR?SERIAL_BEGIN?MAIN
+  +--> ?PR?SERIAL_READ?MAIN
+  +--> ?CO?MAIN
+  +--> ?PR?_SERIAL_PRINT?MAIN
+
+?PR?_SERIAL_PRINT?MAIN         0009H    0003H
+  +--> ?PR?_SERIAL_SEND?MAIN
+
+
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/06/2024  15:52:42  PAGE 2
+
+
+
+SYMBOL TABLE OF MODULE:  main (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:08DFH         PUBLIC        serial_read
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:087CH         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:008DH         PUBLIC        TH1
+  B:0088H.6       PUBLIC        TR1
+  C:08BFH         PUBLIC        serial_begin
+  C:08D7H         PUBLIC        _serial_send
+  C:089FH         PUBLIC        _delay
+  C:0858H         PUBLIC        _serial_print
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        Data
+  -------         ENDDO         
+  C:087CH         LINE#         9
+  C:087CH         LINE#         10
+  C:087CH         LINE#         11
+  C:087FH         LINE#         12
+  C:087FH         LINE#         13
+  C:087FH         LINE#         35
+  C:0884H         LINE#         36
+  C:0889H         LINE#         37
+  C:0889H         LINE#         38
+  C:0892H         LINE#         39
+  C:0894H         LINE#         42
+  C:0894H         LINE#         43
+  C:089DH         LINE#         44
+  C:089DH         LINE#         46
+  -------         ENDPROC       MAIN
+  -------         PROC          SERIAL_BEGIN
+  C:08BFH         LINE#         51
+  C:08BFH         LINE#         52
+  C:08BFH         LINE#         53
+  C:08C2H         LINE#         54
+  C:08C5H         LINE#         55
+  C:08C8H         LINE#         56
+  C:08CAH         LINE#         57
+  -------         ENDPROC       SERIAL_BEGIN
+  -------         PROC          _SERIAL_SEND
+  D:0007H         SYMBOL        ch
+  C:08D7H         LINE#         60
+  C:08D7H         LINE#         61
+  C:08D7H         LINE#         62
+  C:08D9H         LINE#         63
+  C:08DCH         LINE#         64
+  C:08DEH         LINE#         65
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/06/2024  15:52:42  PAGE 3
+
+
+  -------         ENDPROC       _SERIAL_SEND
+  -------         PROC          _SERIAL_PRINT
+  D:0009H         SYMBOL        msz
+  -------         DO            
+  D:0004H         SYMBOL        a
+  -------         ENDDO         
+  C:0858H         LINE#         67
+  C:085EH         LINE#         68
+  C:085EH         LINE#         69
+  C:0861H         LINE#         70
+  C:0871H         LINE#         71
+  C:0871H         LINE#         72
+  C:0874H         LINE#         73
+  C:087BH         LINE#         74
+  -------         ENDPROC       _SERIAL_PRINT
+  -------         PROC          SERIAL_READ
+  C:08DFH         LINE#         77
+  C:08DFH         LINE#         78
+  C:08DFH         LINE#         79
+  C:08E1H         LINE#         80
+  C:08E4H         LINE#         81
+  C:08E6H         LINE#         82
+  -------         ENDPROC       SERIAL_READ
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        x
+  -------         DO            
+  D:0002H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:089FH         LINE#         84
+  C:089FH         LINE#         85
+  C:089FH         LINE#         86
+  C:08A0H         LINE#         87
+  C:08A9H         LINE#         88
+  C:08A9H         LINE#         89
+  C:08B7H         LINE#         90
+  C:08BEH         LINE#         92
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0800H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00AEH BYTE ( 8%) *
+******************************************************************************
+
+Program Size: data=13.0 xdata=0 code=234
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

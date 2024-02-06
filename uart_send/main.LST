@@ -1,0 +1,117 @@
+C51 COMPILER V8.02   MAIN                                                                  02/06/2024 15:52:42 PAGE 1   
+
+
+C51 COMPILER V8.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          
+   3          void serial_begin();
+   4          void serial_send(char ch);
+   5          char serial_read();
+   6          void delay(unsigned int x);
+   7          void serial_print(char msz[]);
+   8          
+   9          void main()
+  10          {
+  11   1      serial_begin();
+  12   1              while(1)
+  13   1              {
+  14   2       /*
+  15   2              serial_print("Hello  ");  delay(100);
+  16   2                 serial_send('W');
+  17   2                 delay(100);
+  18   2                 serial_send('E');
+  19   2                 
+  20   2                 delay(100);
+  21   2                 serial_send('L');
+  22   2                 
+  23   2                 delay(100);
+  24   2                 serial_send('C');
+  25   2                 
+  26   2                 delay(100);
+  27   2                 serial_send('O');
+  28   2                 
+  29   2                 delay(100);
+  30   2                 serial_send('M');
+  31   2                 
+  32   2                 delay(100);
+  33   2                 serial_send('E');  */
+  34   2      
+  35   2                 char Data  = serial_read();
+  36   2                 if(Data == 'f')
+  37   2                 {
+  38   3                 serial_print("Robot in forward direction");
+  39   3                 }
+  40   2      
+  41   2                 else
+  42   2                 {
+  43   3                 serial_print("Invalid command");
+  44   3                 }
+  45   2      
+  46   2              }
+  47   1      
+  48   1      }
+  49          
+  50          
+  51          void serial_begin()
+  52          {
+  53   1      TMOD = 0X20;
+  54   1      SCON = 0X50;
+  55   1      TH1 = 0XFD;
+C51 COMPILER V8.02   MAIN                                                                  02/06/2024 15:52:42 PAGE 2   
+
+  56   1      TR1 = 1;
+  57   1      }
+  58          
+  59          
+  60          void serial_send(char ch)
+  61          {
+  62   1      SBUF  = ch;
+  63   1      while(TI == 0);
+  64   1      TI=0;
+  65   1      }
+  66          
+  67          void serial_print(char msz[])
+  68          {
+  69   1      unsigned int a=0;
+  70   1      for(a=0;msz[a] != '\0';a++)
+  71   1      {
+  72   2      serial_send(msz[a]);
+  73   2      }
+  74   1      }
+  75          
+  76          
+  77          char serial_read()
+  78          {
+  79   1       RI = 0;
+  80   1       while(RI == 0);
+  81   1       return SBUF;
+  82   1      }
+  83          
+  84          void delay(unsigned int x)
+  85          {
+  86   1      unsigned int i,j=0;
+  87   1      for(i=0;i<=x;i++)
+  88   1      {
+  89   2      for(j=0;j<=1000;j++);
+  90   2      }
+  91   1      
+  92   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    131    ----
+   CONSTANT SIZE    =     43    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
